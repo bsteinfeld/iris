@@ -265,26 +265,26 @@ const Buckets = ({
       <div className={styles.titleBar}>
         <div className={styles.title}>
           <Link to="/" className={styles.linkOverride}>
-            <span className={styles.titlePrefix}>IBM</span>&nbsp;&nbsp;Cloud
+            <span className={styles.titlePrefix}>Image and Video </span>&nbsp;&nbsp;
             Annotations
           </Link>
         </div>
         <nav className={styles.mainLinks}>
-          <a className={styles.link} href="https://cloud.annotations.ai/docs">
+          {/* <a className={styles.link} href="/docs">
             Docs
           </a>
           <a
             className={styles.link}
-            href="https://cloud.annotations.ai/workshops"
+            href="/workshops"
           >
             Workshops
           </a>
-          <a className={styles.link} href="https://cloud.annotations.ai/demos">
+          <a className={styles.link} href="/demos">
             Demos
           </a>
-          <a className={styles.link} href="https://cloud.annotations.ai/sdks">
+          <a className={styles.link} href="/sdks">
             SDKs
-          </a>
+          </a> */}
           {/* <Link to="/training" className={styles.link}>
             Training runs
           </Link> */}

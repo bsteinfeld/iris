@@ -52,69 +52,11 @@ const Home = ({ attemptedPage }) => {
     <div className={styles.wrapper}>
       <header className={styles.titleBar}>
         <a href="/" className={styles.title}>
-          <span className={styles.titlePrefix}>IBM</span>&nbsp;&nbsp;Cloud
-          Annotations
+        <span className={styles.titlePrefix}>Image and Video </span>&nbsp;&nbsp;
+            Annotations
         </a>
         <nav className={styles.mainLinks}>
-          <a className={styles.link} href="/docs">
-            Docs
-          </a>
-          <a className={styles.link} href="/workshops">
-            Workshops
-          </a>
-          <a className={styles.link} href="/demos">
-            Demos
-          </a>
-          <a className={styles.link} href="/sdks">
-            SDKs
-          </a>
         </nav>
-
-        <a
-          className={styles.outlink}
-          href="https://ibm.biz/cloud-annotations-developer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div>IBM Developer</div>
-          <svg
-            className={styles.outlinkIcon}
-            focusable="false"
-            preserveAspectRatio="xMidYMid meet"
-            aria-label="Open resource"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 32 32"
-            role="img"
-          >
-            <path d="M26 28H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9v2H6v20h20v-9h2v9a2 2 0 0 1-2 2z"></path>
-            <path d="M21 2v2h5.59L18 12.59 19.41 14 28 5.41V11h2V2h-9z"></path>
-          </svg>
-        </a>
-
-        <a
-          className={styles.outlink}
-          href="https://github.com/cloud-annotations"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div>GitHub</div>
-          <svg
-            className={styles.outlinkIcon}
-            focusable="false"
-            preserveAspectRatio="xMidYMid meet"
-            aria-label="Open resource"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 32 32"
-            role="img"
-          >
-            <path d="M26 28H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9v2H6v20h20v-9h2v9a2 2 0 0 1-2 2z"></path>
-            <path d="M21 2v2h5.59L18 12.59 19.41 14 28 5.41V11h2V2h-9z"></path>
-          </svg>
-        </a>
 
         {loading1 ? (
           <div className={styles.loading}>
@@ -128,7 +70,7 @@ const Home = ({ attemptedPage }) => {
       </header>
       <main className={styles.contentWrapper}>
         <div className={styles.leftWrapper}>
-          <div className={styles.bigText}>Cloud Annotations</div>
+          <div className={styles.bigText}>Image and Video Annotations</div>
           <div className={styles.subText}>
             A fast, easy and collaborative open source image annotation tool for
             teams and individuals.

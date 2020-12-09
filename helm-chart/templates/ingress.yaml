@@ -1,0 +1,49 @@
+{{- $fullName := include "iris.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    ingress.bluemix.net/sticky-cookie-services: "serviceName={{ $fullName }} name=sticky expires=5h path=/ hash=sha1"
+    ingress.bluemix.net/client-max-body-size: "size=10m"
+    ingress.bluemix.net/redirect-to-https: "True"
+    # nginx.ingress.kubernetes.io/affinity: "cookie"
+    # nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+  - hosts:
+    - {{ .Values.ingress.hostname | quote }}
+    secretName: {{ .Values.ingress.tls.secretName | default $fullName }}
+  rules:
+  - host: {{ .Values.ingress.hostname }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: {{ $fullName }}
+          servicePort: {{ $svcPort }}
+      - path: /docs
+        backend:
+          serviceName: docs
+          servicePort: 80
+      - path: /workshops
+        backend:
+          serviceName: docs
+          servicePort: 80
+      - path: /demos
+        backend:
+          serviceName: docs
+          servicePort: 80
+      - path: /sdks
+        backend:
+          serviceName: docs
+          servicePort: 80
+      - path: /docs-assets
+        backend:
+          serviceName: docs
+          servicePort: 80

@@ -30,7 +30,8 @@ const _regions = {
   ],
 }
 
-let _defaultEndpoint = 's3.private.us.cloud-object-storage.appdomain.cloud'
+// let _defaultEndpoint = 's3.private.us.cloud-object-storage.appdomain.cloud'
+let _defaultEndpoint = 's3.us.cloud-object-storage.appdomain.cloud'
 
 let _privateEndpoints = {
   us: 's3.private.us.cloud-object-storage.appdomain.cloud',
@@ -98,7 +99,8 @@ let _publicEndpoints = {
   hkg02: 's3.hkg02.cloud-object-storage.appdomain.cloud',
 }
 
-let _endpoints = _privateEndpoints
+// let _endpoints = _privateEndpoints
+let _endpoints = _publicEndpoints
 
 if (process.env.NODE_ENV !== 'production') {
   _defaultEndpoint = 's3.us.cloud-object-storage.appdomain.cloud'

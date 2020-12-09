@@ -421,11 +421,13 @@ const PoopUp = connect((state) => ({
     switch (modelType) {
       case 'classification':
         notebookUrl =
-          'https://colab.research.google.com/github/cloud-annotations/google-colab-training/blob/master/classification.ipynb'
+          // 'https://colab.research.google.com/github/cloud-annotations/google-colab-training/blob/master/classification.ipynb'
+          'https://labs.cognitiveclass.ai/tools/jupyterlab/'
         break
       case 'localization':
         notebookUrl =
-          'https://colab.research.google.com/github/cloud-annotations/google-colab-training/blob/master/object_detection.ipynb'
+          // 'https://colab.research.google.com/github/cloud-annotations/google-colab-training/blob/master/object_detection.ipynb'
+          'https://labs.cognitiveclass.ai/tools/jupyterlab/'
         break
     }
 
@@ -435,8 +437,8 @@ const PoopUp = connect((state) => ({
           <div className={styles.contentWrapper}>
             <div className={styles.popupTitle}>Connecting your bucket</div>
             <div className={styles.popupBody}>
-              Use the following credentials to connect this bucket to Google
-              Colab. Your images and annotations can then be used to train your
+              Use the following credentials to connect this bucket to Skills Network.
+              Your images and annotations can then be used to train your
               very own model.
             </div>
           </div>
@@ -469,7 +471,7 @@ const PoopUp = connect((state) => ({
                   : styles.popupButtonPrimaryDissabled
               }
             >
-              Open Colab
+              Open JupyterLab Notebook (WIP)
             </a>
           </div>
         </div>
@@ -1541,7 +1543,7 @@ const AppBar = ({
         </div>
       </div>
       <div className={styles.train} onClick={handleClickTrain}>
-        <div className={styles.trainText}>Train model in Colab</div>
+        <div className={styles.trainText}>Train model in a JupyterLab Notebook (WIP)</div>
       </div>
       {/* {sandbox ? null : !wmlResourcesLoading && wmlResources.length === 0 ? (
         <div className={styles.notification}>

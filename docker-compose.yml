@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # args:
+      #   CLIENT_ID: skills-network-staging-annotations
+      #   CLIENT_SECRET: ezf1xKn96UNR
+    image: us.icr.io/skills-network-labs/tools.cloudannotations.frontend:ci

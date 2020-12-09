@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "iris.fullname" . }}
+  labels:
+    {{- include "iris.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "iris.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "iris.selectorLabels" . | nindent 8 }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imageRegistries.name | quote }}
+      serviceAccountName: {{ include "iris.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          # image: "us.icr.io/skills-network-labs/tools.cloudannotations.frontend:beta5"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - "bin/probe"
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 8080
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: ANNOTATIONS_HOSTNAME
+              value: {{ .Values.ingress.hostname | quote }}
+
+            # MESSAGING
+            - name: NATS_URL
+              value: "{{ .Values.nats.url }}"
+            - name: NATS_TLS
+              value: "{{ .Values.nats.tls }}"
+            - name: NATS_USERNAME
+              value: "{{ .Values.nats.username }}"
+            - name: NATS_PASSWORD
+              value: "{{ .Values.nats.password }}"
+
+            # IBMCloud IAM
+            - name: CLIENT_ID
+              value: "{{ .Values.iam.client_id }}"
+            - name: CLIENT_SECRET
+              value: "{{ .Values.iam.client_secret }}"
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

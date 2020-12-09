@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docs
+  labels:
+    app: docs
+    tier: docs
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: docs
+    tier: docs
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+spec:
+  selector:
+    matchLabels:
+      app: docs
+      tier: docs
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: docs
+        tier: docs
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.imageRegistries.name | quote }}
+      containers:
+      - name: docs
+        image: us.icr.io/skills-network-labs/tools.cloudannotations.docs:ci
+        ports:
+        - containerPort: 8012

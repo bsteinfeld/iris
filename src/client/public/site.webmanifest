@@ -1,6 +1,6 @@
 {
-    "name": "Cloud Annotations",
-    "short_name": "Cloud Annotations",
+    "name": "Image and Video Annotations",
+    "short_name": "Image and Video Annotations",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
